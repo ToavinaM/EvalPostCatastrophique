@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: delivery-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - /chemin/vers/votre/dossier/data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    container_name: delivery-api
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    ports:
+      - "5000:5000"
+
+# Aucune nécessité de définir un volume ici si vous utilisez un volume local
