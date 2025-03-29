@@ -6,7 +6,7 @@ import Sider from 'antd/es/layout/Sider';
 const items = [
     {
         key: 'sub1',
-        label: 'Intelligence Artificielle',
+        label: 'Analyse',
         icon: <AreaChartOutlined />,
         children: [
             {
