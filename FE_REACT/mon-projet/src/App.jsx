@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login/Login";
-import MainLayout from "./MainLayout";
+import MainLayout from "./components/MainLayout";
 import Map from "./components/Map/Map";
 import Upload from "./components/Upload/Upload";
 import 'antd/dist/reset.css';

@@ -2,10 +2,11 @@ import React from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined,AreaChartOutlined,BarChartOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import Sider from 'antd/es/layout/Sider';
 const items = [
     {
         key: 'sub1',
-        label: 'Intelligence Artificiel',
+        label: 'Intelligence Artificielle',
         icon: <AreaChartOutlined />,
         children: [
             {
@@ -13,73 +14,69 @@ const items = [
                 label: 'Dashboard',
                 type: 'group',
                 children: [
-                    { key: '1', label: 'Upload Image' },
-                    { key: '2', label: 'Cartographie' },
+                    { key: '/upload', label: 'Upload Image' },
+                    { key: '/cartographie', label: 'Cartographie' },
                 ],
             },
             {
                 key: 'g2',
-                label: 'Item 2',
+                label: 'Autres Options',
                 type: 'group',
                 children: [
-                    { key: '3', label: 'Option 3' },
-                    { key: '4', label: 'Option 4' },
+                    { key: '/option3', label: 'Option 3' },
+                    { key: '/option4', label: 'Option 4' },
                 ],
             },
         ],
     },
     {
         key: 'sub2',
-        label: 'Setting',
+        label: 'Paramètres',
         icon: <SettingOutlined />,
         children: [
-            { key: '5', label: 'Option 5' },
-            { key: '6', label: 'Option 6' },
+            { key: '/option5', label: 'Option 5' },
+            { key: '/option6', label: 'Option 6' },
             {
                 key: 'sub3',
-                label: 'Submenu',
+                label: 'Sous-menu',
                 children: [
-                    { key: '7', label: 'Option 7' },
-                    { key: '8', label: 'Option 8' },
+                    { key: '/option7', label: 'Option 7' },
+                    { key: '/option8', label: 'Option 8' },
                 ],
             },
         ],
     },
     {
-        key: 'sub2',
+        key: 'sub4',
         label: 'Finance',
         icon: <BarChartOutlined />,
         children: [
-            { key: '5', label: 'Option 5' },
-            { key: '6', label: 'Option 6' },
+            { key: '/finance-option5', label: 'Option 5' },
+            { key: '/finance-option6', label: 'Option 6' },
             {
-                key: 'sub3',
-                label: 'Submenu',
+                key: 'sub11',
+                label: 'Sous-menu',
                 children: [
-                    { key: '7', label: 'Option 7' },
-                    { key: '8', label: 'Option 8' },
+                    { key: '/finance-option7', label: 'Option 7' },
+                    { key: '/finance-option8', label: 'Option 8' },
                 ],
             },
         ],
     },
-    {
-        type: 'divider',
-    }
+    { type: 'divider' },
 ];
+
 const Nav = () => {
-     const navigate = useNavigate();
-    const onClick = e => {
-        if (e.key === '1') {
-            navigate('/upload'); // Redirection vers la page d'upload
-        }
-        else if (e.key === '2') {
-            navigate('/cartographie'); // Redirection vers la page d'upload
+    const navigate = useNavigate();
+
+    const onClick = ({ key }) => {
+        if (key.startsWith('/')) {
+            navigate(key);
         }
     };
     return (
         <Menu
             onClick={onClick}
-            style={{ width: 256 }}
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             mode="inline"
