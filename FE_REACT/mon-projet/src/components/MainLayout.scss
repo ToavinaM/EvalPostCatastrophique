@@ -12,13 +12,13 @@
 .container-child {
     flex: 1;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     // padding: 10px;
     .main-child{
-        // box-shadow: 1px 2px 6px 0px grey;
         padding: 20px;
-        border-radius: 10px;
-        height: 90vh;
-        margin-top: 20px;
+        /* border-radius: 10px; */
+        height: 100vh;
+        /* margin-top: 20px; */
+        background-color: #fafafa;
     }
 }

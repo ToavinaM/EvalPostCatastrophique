@@ -63,9 +63,9 @@ export default function Header({ setCollapsed }) {
         </div>
 
         <div className="right-section">
-        <button className="icon-btn"><Notification/></button>
+        <button className="icon-btn"><GlobalOutlined/></button>
         <button className="icon-btn"><MailOutlined/></button>
-        <button className="icon-btn"><BellOutlined/></button>
+        <button className="icon-btn"><Notification/></button>
           <div className="profile">
             {/* <div */}
           <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />

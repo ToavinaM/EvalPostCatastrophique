@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AlignLeftOutlined, BellOutlined, MailOutlined, GlobalOutlined, UserOutlined, SearchOutlined } from '@ant-design/icons';
-import { Popover } from 'antd';
+import { Badge, Popover } from 'antd';
 export default function Notification() {
   const content = (
     <div>
@@ -12,7 +12,9 @@ export default function Notification() {
   return (
     <>
       <Popover content={content} title="Notification">
-        <GlobalOutlined></GlobalOutlined>
+        <Badge size="small" count={5}>
+          <BellOutlined ></ BellOutlined>
+        </Badge>
       </Popover>
     </>
   );
