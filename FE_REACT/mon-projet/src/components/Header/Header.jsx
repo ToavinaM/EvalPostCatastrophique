@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Header.scss'
 import {AlignLeftOutlined,BellOutlined,MailOutlined, GlobalOutlined, UserOutlined, SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Avatar, Input } from 'antd';
+import Notification from '../Notification/Notification';
 
 export default function Header({ setCollapsed }) {
 
@@ -62,7 +63,7 @@ export default function Header({ setCollapsed }) {
         </div>
 
         <div className="right-section">
-        <button className="icon-btn"><GlobalOutlined /></button>
+        <button className="icon-btn"><Notification/></button>
         <button className="icon-btn"><MailOutlined/></button>
         <button className="icon-btn"><BellOutlined/></button>
           <div className="profile">
