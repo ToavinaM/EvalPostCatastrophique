@@ -1,7 +1,7 @@
 import React from 'react';
 import './Upload.scss'
 import Map from '../Map/Map';
-import { Segmented } from 'antd';
+import { Button, Segmented } from 'antd';
 import UploadFile from '../UploadFile/UploadFile';
 export default function Upload() {
   return (
@@ -13,7 +13,16 @@ export default function Upload() {
         </div>
 
         <div className='child-bottom'>
-          <UploadFile></UploadFile>
+          <div className='container-uploadFile'>
+            <UploadFile></UploadFile>
+            
+            <div className='container-button'>
+
+              <Button color="primary" variant="solid">
+                Solid
+              </Button>
+            </div>
+          </div>
         </div>
 
       </div>  

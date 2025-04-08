@@ -19,10 +19,22 @@
     }
     .child-bottom{
         padding: 10px;
-        background-color: blue;
+        // background-color: blue;
         height: calc(90vh - 40px);
         width: 100%;
-        // border-radius: 15px;
+        .container-uploadFile{
+            height: 100%;
+            background-color: red;
+            .container-button{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 100%;
+                background-color: blue;
+                border-radius: 15px;
+            }
+        }
     }
 }
 .container-upload1-right{

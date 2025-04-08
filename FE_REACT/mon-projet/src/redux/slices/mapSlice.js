@@ -1,24 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    value: 0,
+    regionInfo: null,
+    loading: false,
+    error: null
 };
 
 const mapSlice = createSlice({
-    name: 'map', // ✅ Corrigé : un nom simple, pas "mapReducer"
+    name: 'map',
     initialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        setRegionInfo: (state, action) => {
+            state.regionInfo = action.payload;
         },
-        decrement: (state) => {
-            state.value -= 1;
+        setLoading: (state) => {
+            state.loading = true;
         },
-        incrementByAmount: (state, action) => {
-            state.value += action.payload;
+        setError: (state, action) => {
+            state.error = action.payload;
         },
-    },
+        resetRegionInfo: (state) => {
+            state.regionInfo = null;
+        }
+    }
 });
 
-export const { increment, decrement, incrementByAmount } = mapSlice.actions;
+export const { setRegionInfo, setLoading, setError, resetRegionInfo } = mapSlice.actions;
 export default mapSlice.reducer;
