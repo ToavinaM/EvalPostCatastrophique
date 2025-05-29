@@ -23,10 +23,14 @@ export default function Upload() {
             </div> */}
             {/* dynamique tokony mandray  */}
             <CardRegionInfo/>
-
-            <Button className="button-fixed" color="primary" variant="solid">
-              Solid
+            <div className='div-button-fixed'>
+            <Button className="button-fixed" color="volcano" variant="solid">
+              Annuler
             </Button>
+            <Button className="button-fixed" color="green" variant="solid">
+              Analyser
+            </Button>
+            </div>
           </div>
         </div>
 
