@@ -2,6 +2,20 @@
     display: flex;
     // background-color: red;
     // gap: 20px;
+   
+}
+.container-uploadFile {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    /* ou une hauteur fixe en px si nécessaire */
+    border: 1px solid #ccc;
+    /* juste pour visualiser */
+    padding: 1rem;
+}
+
+.button-fixed {
+    margin-top: auto;
 }
 .container-upload1-left{
     // background-color: pink;
@@ -24,7 +38,7 @@
         width: 100%;
         .container-uploadFile{
             height: 100%;
-            background-color: red;
+            // background-color: red;
             .container-button{
                 display: flex;
                 justify-content: center;
@@ -40,7 +54,7 @@
 .container-upload1-right{
     width: 60%;
     // border-radius: 18px;
-    height: 90vh;
-    background-color: red;
+    height: 100vh;
+    // background-color: red;
     overflow: hidden;
 }

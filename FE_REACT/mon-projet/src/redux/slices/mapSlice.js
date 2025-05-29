@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    regionInfo: null,
+    regionInfo: [],
     loading: false,
     error: null
 };
 
 const mapSlice = createSlice({
-    name: 'map',
+    name: 'mapReducer',
     initialState,
     reducers: {
         setRegionInfo: (state, action) => {
-            state.regionInfo = action.payload;
+            state.regionInfo.push(action.payload); // Ajoute la nouvelle région
         },
         setLoading: (state) => {
             state.loading = true;

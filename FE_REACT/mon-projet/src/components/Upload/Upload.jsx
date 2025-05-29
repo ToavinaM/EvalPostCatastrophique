@@ -3,6 +3,7 @@ import './Upload.scss'
 import Map from '../Map/Map';
 import { Button, Segmented } from 'antd';
 import UploadFile from '../UploadFile/UploadFile';
+import CardRegionInfo from '../cardRegionInfo/CardRegionInfo';
 export default function Upload() {
   return (
     <div className='container-upload'>
@@ -14,14 +15,18 @@ export default function Upload() {
 
         <div className='child-bottom'>
           <div className='container-uploadFile'>
-            <UploadFile></UploadFile>
+            {/* <UploadFile></UploadFile> */}
             
-            <div className='container-button'>
+            {/* <div className='container-button'>
 
-              <Button color="primary" variant="solid">
-                Solid
-              </Button>
-            </div>
+            
+            </div> */}
+            {/* dynamique tokony mandray  */}
+            <CardRegionInfo/>
+
+            <Button className="button-fixed" color="primary" variant="solid">
+              Solid
+            </Button>
           </div>
         </div>
 
