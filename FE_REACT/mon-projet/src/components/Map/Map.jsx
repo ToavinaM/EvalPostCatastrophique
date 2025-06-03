@@ -174,7 +174,7 @@ const Map = () => {
 
     return (
         <div className="map-container">
-            <MapContainer center={position} zoom={13} style={{ height: "100vh", width: "100%" }}>
+            <MapContainer center={position} zoom={13} style={{ height: "calc(100vh - 50px)", width: "100%" }}>
                 <LayersControl position="bottomright">
                     <BaseLayer checked name="Carte">
                         <TileLayer

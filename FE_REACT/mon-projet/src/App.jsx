@@ -11,8 +11,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Login/>} />
-        <Route path="/cartographie" element={<MainLayout header={false} fullScreen = {true}><Map /></MainLayout>} />
-        <Route path="/upload" element={<MainLayout><Upload /></MainLayout>} />
+        <Route path="/cartographie" element={<MainLayout header={true} fullScreen = {true}><Map /></MainLayout>} />
+        <Route path="/upload" element={<MainLayout header={true} fullScreen={true}><Upload /></MainLayout>} />
       </Routes>
     </Router>
   );
