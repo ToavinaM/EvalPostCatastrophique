@@ -45,5 +45,12 @@ Object.values(models).forEach(model => {
     model.associate(models);
   }
 });
+// 🔄 Synchroniser la base de données
+try {
+  await sequelize.sync({ alter: true }); // ou { force: true } pour réinitialiser les tables
+  console.log('✅ Base de données synchronisée avec succès.');
+} catch (error) {
+  console.error('❌ Erreur lors de la synchronisation de la base de données :', error);
+}
 
 export { sequelize, models };
