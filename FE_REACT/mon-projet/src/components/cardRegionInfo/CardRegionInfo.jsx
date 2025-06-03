@@ -22,7 +22,7 @@ export default function CardRegionInfo() {
           <div className='card-region-info'>
               {regionInfo.length>0 ?
                 <>
-                  <h3>{regionInfo[regionInfo.length-1]?.address.city}</h3>
+              <h3>{regionInfo[regionInfo.length - 1]?.address.city || regionInfo[regionInfo.length - 1]?.address.region}</h3>
                   <p><strong>{regionInfo[regionInfo.length-1]?.address.suburb}</strong></p>
                   <p>{regionInfo[regionInfo.length-1  ]?.display_name}</p>
                 </>

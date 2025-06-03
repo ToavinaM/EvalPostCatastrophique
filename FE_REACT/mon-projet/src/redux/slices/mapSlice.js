@@ -5,13 +5,13 @@ const initialState = {
     loading: false,
     error: null
 };
-
+// ...existing code...
 const mapSlice = createSlice({
     name: 'mapReducer',
     initialState,
     reducers: {
         setRegionInfo: (state, action) => {
-            state.regionInfo.push(action.payload); // Ajoute la nouvelle région
+            state.regionInfo.push(action.payload);
         },
         setLoading: (state) => {
             state.loading = true;
@@ -21,9 +21,16 @@ const mapSlice = createSlice({
         },
         resetRegionInfo: (state) => {
             state.regionInfo = null;
+        },
+        editRegionInfo: (state, action) => {
+            const { index, newData } = action.payload;
+            if (state.regionInfo && state.regionInfo[index]) {
+                state.regionInfo[index] = { ...state.regionInfo[index], ...newData };
+            }
         }
     }
 });
 
-export const { setRegionInfo, setLoading, setError, resetRegionInfo } = mapSlice.actions;
+export const { setRegionInfo, setLoading, setError, resetRegionInfo, editRegionInfo } = mapSlice.actions;
+// ...existing code...
 export default mapSlice.reducer;

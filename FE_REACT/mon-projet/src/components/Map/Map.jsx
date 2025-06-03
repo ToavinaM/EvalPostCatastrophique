@@ -18,7 +18,7 @@ import 'leaflet-control-geocoder/dist/Control.Geocoder.css'; // ✅ Style du geo
 import 'leaflet-control-geocoder'; // ✅ Le script du geocoder
 import './Map.scss';
 import axios from 'axios';
-import { setError, setLoading, setRegionInfo } from '../../redux/slices/mapSlice';
+import { editRegionInfo, setError, setLoading, setRegionInfo } from '../../redux/slices/mapSlice';
 
 const { BaseLayer } = LayersControl;
 
@@ -78,6 +78,8 @@ const Map = () => {
 
     // Fonction pour calculer le centre d'un polygone
     const calculateCenter = (latlngs) => {
+        console.log({latlngs});
+        
         let latSum = 0;
         let lngSum = 0;
         latlngs.forEach(latlng => {
@@ -114,6 +116,7 @@ const Map = () => {
     const handleDrawCreated = (e) => {
         const { layerType, layer } = e;
         if (layerType === "polygon") {
+            alert('niditra')
             const coordinates = layer.getLatLngs(); // Récupérer les coordonnées du polygone
             console.log("Coordonnées du polygone :", coordinates);
 
@@ -125,12 +128,54 @@ const Map = () => {
             fetchRegionInfo(center, coordinates);
         }
     };
+    const handleDrawEdited = (e) => {
+        e.layers.eachLayer((layer) => {
+            const coordinates = layer.getLatLngs();
+            const center = calculateCenter(coordinates[0]);
+            console.log('edit',coordinates);
+            console.log(center);
 
+            
+            // Trouver l'index du polygone à modifier (exemple basique : par le centre)
+            // À adapter selon ta logique métier !
+            // Ici, on suppose que regionInfo est dans le store et accessible via useSelector
+            // Tu peux aussi passer l'index via une propriété custom sur le layer si besoin
+
+            // Exemple d'utilisation de useSelector (à placer en haut du composant)
+            // const regionInfo = useSelector(state => state.mapReducer.regionInfo);
+
+            // Pour l'exemple, on prend le dernier (à adapter)
+            const index = -1; // -1 pour le dernier élément
+
+            dispatch(setLoading());
+            axios
+                .get('https://nominatim.openstreetmap.org/reverse', {
+                    params: {
+                        format: 'json',
+                        lat: center.lat,
+                        lon: center.lng,
+                        zoom: 18,
+                        addressdetails: 1,
+                    }
+                })
+                .then((response) => {
+                    response.data.coordinates = coordinates;
+
+                    console.log(response.data.coordinates);
+                    
+                    dispatch(editRegionInfo({ index, newData: response.data }));
+                })
+                .catch((error) => {
+                    console.log("error", { error });
+                    dispatch(setError(error.message));
+                });
+        });
+    };
 
     return (
         <div className="map-container">
             <MapContainer center={position} zoom={13} style={{ height: "100vh", width: "100%" }}>
-                <LayersControl position="topright">
+                <LayersControl position="bottomright">
                     <BaseLayer checked name="Carte">
                         <TileLayer
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -156,8 +201,9 @@ const Map = () => {
                     <EditControl
                         position="topright"
                         onCreated={handleDrawCreated}
+                        onEdited={handleDrawEdited}
                         draw={{
-                            rectangle: false,
+                            rectangle:  false,
                             circle: false,
                             circlemarker: false,
                             polyline: false,
