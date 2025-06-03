@@ -1,12 +1,11 @@
-import axios from './axiosInstance';
-// src/api/auth.js
-// import axios from './axiosInstance'; // ou axios directement
+import axiosInstance from './axiosInstance';
 
 export const login = (credentials) => {
-    return axios.post('/auth/login', credentials);
+    return axiosInstance.post('/auth/login', credentials);
 };
 
-export const register = async (userData) => {
-    const response = await axios.post('/auth/register', userData);
-    return response.data;
-};
+
+// export const register = async (userData) => {
+//     const response = await axios.post('/auth/register', userData);
+//     return response.data;
+// };

@@ -3,6 +3,7 @@ const { User } = models;
 
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { AppError } from '../classe/AppError.js';
 
 // 🔐 Inscription
 export const register = async (req, res) => {
@@ -39,41 +40,34 @@ export const register = async (req, res) => {
     }
 };
 
-// 🔑 Connexion
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
-        // Recherche de l'utilisateur
         const user = await User.findOne({ where: { email } });
-        if (!user) {
-            return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-        }
+        if (!user) return next(new AppError('Utilisateur non trouvé', 404));
 
-        // Vérifie le mot de passe
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: 'Mot de passe incorrect.' });
-        }
+        if (!isMatch) return next(new AppError('Mot de passe incorrect', 400));
 
-        // Génère un token JWT
-        const token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(200).json({
+        return res.status(200).json({
+            success: true,
             message: 'Connexion réussie',
-            token,
-            user: {
-                id: user.id,
-                username: user.username,
-                email: user.email,
-                role: user.role
-            }
+            data: {
+                token,
+                user: {
+                    id: user.id,
+                    email: user.email,
+                    username: user.username,
+                },
+            },
         });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
+
+    } catch (err) {
+        console.log("==============>>>>",err);
+        
+        next(err);
     }
-};
+  };

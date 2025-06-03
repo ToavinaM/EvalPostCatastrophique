@@ -7,7 +7,7 @@ import { login } from '../../api/auth';
 const Login = () => {
     const navigate = useNavigate();
     const { callApi, loading } = useApi(login);
-
+    const [messageApi, contextHolder] = message.useMessage();
     const onFinish = async (values) => {
         try {
             const response = await callApi(values); // appel de l'API
@@ -18,12 +18,17 @@ const Login = () => {
             localStorage.setItem('token', response.token);
 
             // Redirection
-            alert('redirect')
+            // alert('redirect')
             navigate('/cartographie');
         } catch (err) {
             // alert('error')
             console.log({err});
-            
+           
+            messageApi.open({
+                type: 'error',
+                content: err.response?.data?.error || 'Erreur de connexion ❌',
+            });
+           
             message.error(err.response?.data?.message || 'Erreur de connexion ❌');
         }
     };
@@ -57,6 +62,7 @@ const Login = () => {
                         Se connecter
                     </Button>
                 </Form.Item>
+                {contextHolder}
             </Form>
         </div>
     );
