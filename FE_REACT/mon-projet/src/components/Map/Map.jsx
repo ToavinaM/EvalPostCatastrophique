@@ -116,7 +116,7 @@ const Map = () => {
     const handleDrawCreated = (e) => {
         const { layerType, layer } = e;
         if (layerType === "polygon") {
-            alert('niditra')
+            // alert('niditra')
             const coordinates = layer.getLatLngs(); // Récupérer les coordonnées du polygone
             console.log("Coordonnées du polygone :", coordinates);
 

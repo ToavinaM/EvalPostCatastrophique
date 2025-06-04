@@ -1,8 +1,9 @@
 import { Form, Input, Button, message } from 'antd';
 import './Login.scss';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useApi } from '../../hooks/useApi';
 import { login } from '../../api/auth';
+// import { useNavigate, Link } from "react-router-dom"; 
 
 const Login = () => {
     const navigate = useNavigate();
@@ -15,7 +16,9 @@ const Login = () => {
             console.log({response});
             
             // Sauvegarder le token (optionnel : sécurisé par HTTP-only cookies en prod)
-            localStorage.setItem('token', response.token);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', response.data.user);
+
 
             // Redirection
             // alert('redirect')
@@ -62,6 +65,9 @@ const Login = () => {
                         Se connecter
                     </Button>
                 </Form.Item>
+                <div className="text-center">
+                    Vous n'avez pas de compte ? <Link to="/register">Inscrivez-vous</Link>
+                </div>
                 {contextHolder}
             </Form>
         </div>
